@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Caregory, Product
+
+admin.site.register(Caregory)
+admin.site.register(Product)
