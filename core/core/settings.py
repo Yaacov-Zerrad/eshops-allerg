@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'djoser',
     'product',
     # python manage.py runsslserver
-    #
+    # https://github.com/teddziuba/django-sslserver
     "sslserver",
 ]
 
