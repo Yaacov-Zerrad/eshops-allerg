@@ -1,0 +1,23 @@
+ecom_vue/.DS_Store
+ecom_vue/node_modules
+ecom_vue/dist
+
+
+# local env files
+ecom_vue/.env.local
+ecom_vue/.env.*.local
+
+# Log files
+ecom_vue/npm-debug.log*
+ecom_vue/yarn-debug.log*
+ecom_vue/yarn-error.log*
+ecom_vue/pnpm-debug.log*
+
+# Editor directories and files
+ecom_vue/.idea
+ecom_vue/.vscode
+ecom_vue/*.suo
+ecom_vue/*.ntvs*
+ecom_vue/*.njsproj
+ecom_vue/*.sln
+ecom_vue/*.sw?

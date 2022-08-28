@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'djoser',
+    
     'product',
+    'order',
     # python manage.py runsslserver
     # https://github.com/teddziuba/django-sslserver
     "sslserver",
