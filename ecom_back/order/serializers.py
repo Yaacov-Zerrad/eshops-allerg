@@ -1,10 +1,9 @@
-from itertools import product
 from rest_framework import serializers
 from .models import Order, OrderItem
 from product.serializers import ProductSerializer
 
 
-class MyOrderItemSerializer(serializers.Serializer):
+class MyOrderItemSerializer(serializers.ModelSerializer):
     product = ProductSerializer
     class Meta:
         model = OrderItem
@@ -15,7 +14,7 @@ class MyOrderItemSerializer(serializers.Serializer):
         )
         
 
-class MyOrderSerializer(serializers.Serializer):
+class MyOrderSerializer(serializers.ModelSerializer):
     items = MyOrderItemSerializer(many=True)
     class Meta:
         model = Order
@@ -33,7 +32,7 @@ class MyOrderSerializer(serializers.Serializer):
         )
 
 
-class OrderItemSerializer(serializers.Serializer):
+class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = (
@@ -42,7 +41,7 @@ class OrderItemSerializer(serializers.Serializer):
             "quantity",
         )
 
-class OrderSerializer(serializers.Serializer):
+class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True)
     class Meta:
         model = Order
