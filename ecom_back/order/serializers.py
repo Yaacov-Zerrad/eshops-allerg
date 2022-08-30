@@ -4,7 +4,8 @@ from product.serializers import ProductSerializer
 
 
 class MyOrderItemSerializer(serializers.ModelSerializer):
-    product = ProductSerializer
+    product = ProductSerializer()
+    
     class Meta:
         model = OrderItem
         fields = (
@@ -16,6 +17,7 @@ class MyOrderItemSerializer(serializers.ModelSerializer):
 
 class MyOrderSerializer(serializers.ModelSerializer):
     items = MyOrderItemSerializer(many=True)
+    
     class Meta:
         model = Order
         fields = (
