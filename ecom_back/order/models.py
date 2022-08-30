@@ -19,8 +19,8 @@ class Order(models.Model):
     class Meta:
         ordering = ['-created_at',]
         
-    def __str__(self):
-        return self.first_name
+    # def __str__(self):
+    #     return self.first_name
     
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)

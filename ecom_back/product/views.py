@@ -49,3 +49,6 @@ def search(request):
         return Response(serializer.data)
     else:
         return Response({'products': []})
+    
+    
+    
