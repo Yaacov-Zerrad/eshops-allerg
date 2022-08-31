@@ -30,7 +30,8 @@ class MyOrderSerializer(serializers.ModelSerializer):
             'place',
             'phone',
             'items',
-            "paid_amount"
+            "paid_amount",
+            'payed',
         )
 
 
@@ -57,6 +58,7 @@ class OrderSerializer(serializers.ModelSerializer):
             'place',
             'phone',
             'items',
+            
         )
 
     def create(self, validated_data):
@@ -69,4 +71,12 @@ class OrderSerializer(serializers.ModelSerializer):
         return order
         
         
-        
+class OrderPaypalSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Order
+        fields = (
+            # "id",
+            "num_order",
+            "payed"
+        )

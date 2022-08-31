@@ -1,15 +1,19 @@
+from functools import partial
+from multiprocessing import context
 from django.shortcuts import render
-
+from django.db.models import Q 
+from rest_framework import generics
 from django.contrib.auth.models import User
 from django.http import Http404
 
 from rest_framework import status, authentication, permissions
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 
 from .models import Order, OrderItem
-from .serializers import MyOrderSerializer, OrderSerializer, MyOrderItemSerializer
+from .serializers import MyOrderSerializer, OrderSerializer, MyOrderItemSerializer, OrderPaypalSerializer
 
 @api_view(['POST'])
 @authentication_classes([authentication.TokenAuthentication])
@@ -52,6 +56,15 @@ def checkout_paypal(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class ValidePaypalClass(generics.UpdateAPIView):
+    queryset = Order.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes =[authentication.TokenAuthentication]
+    serializer_class = OrderPaypalSerializer
+    
+    
+    
+
 class OrdersList(APIView):
     authentication_classes =[authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
@@ -60,3 +73,5 @@ class OrdersList(APIView):
         orders = Order.objects.filter(user=request.user)
         serializer = MyOrderSerializer(orders, many=True)
         return Response(serializer.data)
+    
+    

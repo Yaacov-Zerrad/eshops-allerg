@@ -15,6 +15,10 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     paid_amount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     # stripe_token = models.CharField(max_length=100)
+    num_order = models.CharField(max_length=120, default=4012)
+    payed = models.BooleanField(default=False)
+    
+    
     
     class Meta:
         ordering = ['-created_at',]
@@ -27,6 +31,7 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, related_name='items', on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
+    
 
     def __str__(self):
         return '%s' % self.id
